@@ -1,29 +1,55 @@
-from openai import OpenAI
 import streamlit as st
+import openai
+import base64
+openai.api_key = st.secrets['OPENAI_API_KEY']
+st.session_state["model"] = st.secrets['OPENAI_FINETUNED_MODEL']
+st.session_state["assistant_id"] = "asst_lYoJwmKMp7oALbM5XT36rHDe"
+st.title("Mental Health Chatbot")
 
-with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
-    "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
-    "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
-    "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
+client = openai.OpenAI(
+        api_key=openai.api_key,
+    )
 
-st.title("💬 Chatbot")
-st.caption("🚀 A Streamlit chatbot powered by OpenAI")
+
+
+# INITIAL_MESSAGE = {
+#         "role": "assistant",
+#         "content": "Hey there, I'm Mental Health Chatbot! How can I help you today?",
+#     }
+# Initialize chat history
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I help you?"}]
+    st.session_state["messages"] = []
+    # st.session_state.messages.append(INITIAL_MESSAGE)
+def display_chat_history():
+    for message in st.session_state.messages:
+        print(message)
+        with st.chat_message(message['role']):
+            st.markdown(message["content"])
 
-for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
+thread = client.beta.threads.create()
+def submit_chat(user_input):
+    
+    message_format = {"role": "user", "content": user_input}
+    st.session_state.messages.append(message_format)
 
-if prompt := st.chat_input():
-    if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
-        st.stop()
+    message = client.beta.threads.messages.create(
+            thread_id=thread.id,
+            role="user",
+            content=user_input
+            )
+    run = client.beta.threads.runs.create_and_poll(
+            thread_id=thread.id,
+            assistant_id=st.session_state["assistant_id"],
+            )
+    messages = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run.id))
+    print(messages)
+    print(messages[0].content[0].text.value)
+    assistant_response = {"role": "assistant", "content": messages[0].content[0].text.value}
+    st.session_state.messages.append(assistant_response)
+    return messages[0].content[0].text.value
+def main():
+    if prompt := st.chat_input("Have a conversation with me :)"):
+        submit_chat(prompt)
+        display_chat_history()
 
-    client = OpenAI(api_key=openai_api_key)
-    st.session_state.messages.append({"role": "user", "content": prompt})
-    st.chat_message("user").write(prompt)
-    response = client.chat.completions.create(model="gpt-3.5-turbo", messages=st.session_state.messages)
-    msg = response.choices[0].message.content
-    st.session_state.messages.append({"role": "assistant", "content": msg})
-    st.chat_message("assistant").write(msg)
+main()
