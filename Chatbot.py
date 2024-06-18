@@ -26,9 +26,10 @@ def display_chat_history():
         with st.chat_message(message['role']):
             st.markdown(message["content"])
 
-thread = client.beta.threads.create()
+
+
 def submit_chat(user_input):
-    
+    thread = client.beta.threads.create()
     message_format = {"role": "user", "content": user_input}
     st.session_state.messages.append(message_format)
 
@@ -42,14 +43,13 @@ def submit_chat(user_input):
             assistant_id=st.session_state["assistant_id"],
             )
     messages = list(client.beta.threads.messages.list(thread_id=thread.id, run_id=run.id))
-    print(messages)
-    print(messages[0].content[0].text.value)
     assistant_response = {"role": "assistant", "content": messages[0].content[0].text.value}
     st.session_state.messages.append(assistant_response)
     return messages[0].content[0].text.value
-def main():
-    if prompt := st.chat_input("Have a conversation with me :)"):
-        submit_chat(prompt)
-        display_chat_history()
 
-main()
+
+if prompt := st.chat_input("Have a conversation with me :)"):
+    submit_chat(prompt)
+    display_chat_history()
+
+
