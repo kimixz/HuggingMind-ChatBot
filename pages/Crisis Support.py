@@ -1,5 +1,33 @@
 import streamlit as st
+import base64
 
+st.set_page_config(
+    page_title="HuggingMind Bot",
+    page_icon="./assets/huggingmind_chat_icon.png",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+st.session_state["model"] = st.secrets['OPENAI_FINETUNED_MODEL']
+st.session_state["assistant_id"] = st.secrets['OPENAI_ASSISTANT_KEY']
+
+# Function to convert image to base64
+def img_to_base64(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+    
+# Sidebar content
+with st.sidebar:
+    img_path = "./assets/HuggingMind.svg"  
+    img_base64 = img_to_base64(img_path)
+    st.markdown(
+        f'<img src="data:image/svg+xml;base64,{img_base64}" style="width:100%; height:auto;">',
+        unsafe_allow_html=True,
+    )
+    st.divider()
+    st.markdown("""\nHuggingMind is an AI-driven mental health chatbot provides university 
+students with 24/7 personalized support, utilizing advanced language models and university-specific mental health resources.
+""")
+    
 # Adding custom CSS for enhanced styling
 st.markdown("""
     <style>
@@ -14,8 +42,6 @@ st.markdown("""
         --header-color-dark: #8BC34A;
         --footer-color-light: #666;
         --footer-color-dark: #ccc;
-        --link-color-light: #1E90FF;
-        --link-color-dark: #87CEFA;
         --link-color-light: #007BFF;
         --link-color-dark: #00BFFF;
     }
@@ -74,7 +100,7 @@ st.markdown("""
         margin-bottom: 30px;
     }
     .crisis-support-container {
-        padding: 20px;
+        padding: 30px;
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         margin-bottom: 20px;
@@ -89,6 +115,7 @@ st.markdown("""
         padding-left: 10px;
     }
     .crisis-support-container ul li {
+        font-size: 18px;
         margin-bottom: 20px;
         font-family: 'Arial', sans-serif;
         line-height: 1.6;
@@ -119,13 +146,13 @@ st.markdown("""
 
 st.markdown("""
 <div class="crisis-support-container">
-    <h5>Support for First Nations, Inuit, and Métis Peoples</h5>
+    <h4>Support for First Nations, Inuit, and Métis Peoples</h4>
     <ul>
         <li><strong>Hope for Wellness Help Line:</strong> Call <a href="tel:1-855-242-3310">1-855-242-3310</a> (toll-free) or connect to the <a href="https://www.hopeforwellness.ca/">online Hope for Wellness chat</a>. Support is available in English and French and, by request, in Cree, Ojibway, and Inuktitut.</li>
         <li><strong>The National Indian Residential School Crisis Line:</strong> Crisis support is available to former Indian Residential School students and their families 24 hours a day, 7 days a week at <a href="tel:1-866-925-4419">1-866-925-4419</a> (toll-free).</li>
         <li><strong>Missing and Murdered Indigenous Women and Girls Crisis Line:</strong> Crisis support is available to individuals impacted by the issue of missing and murdered Indigenous women, girls, and 2SLGBTQQIA+ people 24 hours a day, 7 days a week at <a href="tel:1-844-413-6649">1-844-413-6649</a> (toll-free).</li>
     </ul>
-    <h5>Support for Youth and Young Adults</h5>
+    <h4>Support for Youth and Young Adults</h4>
     <ul>
         <li><strong>Kids Help Phone:</strong> Call <a href="tel:1-800-668-6868">1-800-668-6868</a> (toll-free) or text CONNECT to <a href="sms:686868">686868</a>. Available 24 hours a day, 7 days a week to Canadians aged 5 to 29 who want confidential and anonymous care from trained responders.</li>
     </ul>
