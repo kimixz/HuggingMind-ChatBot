@@ -4,13 +4,17 @@ import base64
 
 
 openai.api_key = st.secrets['OPENAI_API_KEY']
+st.set_page_config(
+    page_title="HuggingMind Bot",
+    page_icon="./assets/huggingmind_chat_icon.png",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 st.session_state["model"] = st.secrets['OPENAI_FINETUNED_MODEL']
 st.session_state["assistant_id"] = st.secrets['OPENAI_ASSISTANT_KEY']
 st.title("HuggingMind Bot")
+st.warning("⚠️ HuggingMind Bot is not intended to replace professional mental health advice, diagnosis, or treatment.")
 
-
-    
-            
 client = openai.OpenAI(
         api_key=openai.api_key,
     )
@@ -30,23 +34,21 @@ with st.sidebar:
     )
     st.divider()
     st.markdown("""\nHuggingMind is an AI-driven mental health chatbot provides university 
-students with 24/7 personalized support and immediate access to professional guidance, utilizing 
-advanced language models and university-specific mental health resources.
+students with 24/7 personalized support, utilizing advanced language models and university-specific mental health resources.
 """)
  
-
-# INITIAL_MESSAGE = {
-#         "role": "assistant",
-#         "content": "Hey there, I'm Mental Health Chatbot! How can I help you today?",
-#     }
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
-    # st.session_state.messages.append(INITIAL_MESSAGE)
 
-for message in st.session_state.messages:
+for message in st.session_state.messages:  
     print(message)
-    with st.chat_message(message['role']):
+    if message['role'] == 'user':
+        avatar_path = './assets/user_icon.png'
+    else:
+        avatar_path = './assets/huggingmind_chat_icon.png'
+
+    with st.chat_message(message['role'], avatar=avatar_path):
         st.markdown(message["content"])
 
 thread = client.beta.threads.create()
@@ -82,6 +84,5 @@ def submit_chat(user_input):
 def main():
     if prompt := st.chat_input("Have a conversation with me :)"):
         submit_chat(prompt)
-        # display_chat_history()
 
 main()
