@@ -89,6 +89,5 @@ def main():
 
 if prompt := st.chat_input("Have a conversation with me :)"):
     submit_chat(prompt)
-    display_chat_history()
 
 
