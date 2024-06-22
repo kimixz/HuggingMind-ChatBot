@@ -107,17 +107,17 @@ st.title("🌱 Grounding Exercises")
 st.markdown("""
 <div class="grounding-container">
     <h3>Meditation</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/x0nZ1ZLephQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/x0nZ1ZLephQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
     <h3>Deep Breathing Exercise</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/DbDoBzGY3vo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/DbDoBzGY3vo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
     <h3>5-4-3-2-1 Technique</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/30VMIEmA114" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/30VMIEmA114" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
     <h3>Focus Reset Exercise</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/QtE00VP4W3Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/QtE00VP4W3Y" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
     <h3>Somatic Exercises</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/qxuDrgvXBTs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/qxuDrgvXBTs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/>
     <h3>Relaxing Yoga</h3>
-    <iframe width="850" height="450" src="https://www.youtube.com/embed/COp7BR_Dvps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/> 
+    <iframe width="100%" height="450" src="https://www.youtube.com/embed/COp7BR_Dvps" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe><br/> 
 </div>
 """, unsafe_allow_html=True)
 

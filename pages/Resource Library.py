@@ -126,35 +126,35 @@ st.markdown("""
         <li><a href="https://adaa.org/understanding-anxiety" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">Anxiety and Depression Association of America</a></li>
         <li><a href="https://www.helpguide.org/articles/stress/stress-management.htm" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">Managing Stress</a></li>
         <li>Getting to Know Your Brain: Dealing with Stress
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/sTpo1FuYQ9I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/sTpo1FuYQ9I" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
         <li>Guided Visualization: Dealing with Stress
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/Dq9odPtHbcg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/Dq9odPtHbcg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
     </ul><br/>
     <h3>Depression</h3> 
     <ul>
         <li>Behavioral Activation: Treatment of Adolescent Depression
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/1R6-gLZZhYc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/1R6-gLZZhYc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
         <li><a href="https://www.nimh.nih.gov/health/topics/depression/index.shtml" target="_blank" rel="noopener noreferrer" style="text-decoration: none;">Coping with Depression</a></li>
     </ul><br/>
     <h3>ADHD</h3> 
     <ul>
         <li>Mental Health Minute: Attention-Deficit/Hyperactivity Disorder
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/-j2PqoFCzX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/-j2PqoFCzX0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
     </ul><br/>
     <h3>Eating Disorders</h3> 
     <ul>
         <li>Mental Health Minute: Eating Disorders
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/_yM7_hbpRXc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/_yM7_hbpRXc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
     </ul><br/>
     <h3>Bipolar Disorder</h3> 
     <ul>
         <li>Mental Health Minute: Bipolar Disorder in Adults
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/lOhelfEDAzs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/lOhelfEDAzs" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
     </ul><br/>
     <h3>Mindfulness Meditation</h3> 
     <ul>
         <li>5-Minute Meditation You Can Do Anywhere
-        <iframe width="850" height="450" src="https://www.youtube.com/embed/inpok4MKVLM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/inpok4MKVLM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube video"></iframe></li>
     </ul>
 </div>
 """, unsafe_allow_html=True)

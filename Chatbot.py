@@ -1,7 +1,8 @@
 import streamlit as st
 import openai
 import base64
-
+from presidio_analyzer import AnalyzerEngine
+from presidio_anonymizer import AnonymizerEngine
 
 openai.api_key = st.secrets['OPENAI_API_KEY']
 st.set_page_config(
@@ -13,7 +14,7 @@ st.set_page_config(
 st.session_state["model"] = st.secrets['OPENAI_FINETUNED_MODEL']
 st.session_state["assistant_id"] = st.secrets['OPENAI_ASSISTANT_KEY']
 st.title("HuggingMind Bot")
-st.warning("⚠️ HuggingMind Bot is not intended to replace professional mental health advice, diagnosis, or treatment.")
+st.warning("⚠️ HuggingMind Bot is not intended to replace professional mental health advice, diagnosis, treatment, or crisis support. You're not required to provide personal information except the name of your university. ")
 
 client = openai.OpenAI(
         api_key=openai.api_key,
@@ -36,13 +37,13 @@ with st.sidebar:
     st.markdown("""\nHuggingMind is an AI-driven mental health chatbot provides university 
 students with 24/7 personalized support, utilizing advanced language models and university-specific mental health resources.
 """)
+    st.error("Your data privacy is our top priority. We do not store your conversation history nor your personal information you might have accidently put in our chat platform.")
  
 # Initialize chat history
 if "messages" not in st.session_state:
     st.session_state["messages"] = []
 
 for message in st.session_state.messages:  
-    print(message)
     if message['role'] == 'user':
         avatar_path = './assets/user_icon.png'
     else:
@@ -51,7 +52,13 @@ for message in st.session_state.messages:
     with st.chat_message(message['role'], avatar=avatar_path):
         st.markdown(message["content"])
 
+def anonymize_user_input(user_input):
+    analyzer = AnalyzerEngine()
+    anonymizer = AnonymizerEngine()
+    results = analyzer.analyze(text=user_input, entities=['PERSON', 'CREDIT_CARD', 'IP_ADDRESS', 'EMAIL_ADDRESS', 'PHONE_NUMBER'], language='en')
+    anonymized_text = anonymizer.anonymize(text=user_input,analyzer_results=results)
 
+    return results, anonymized_text.text
 
 def submit_chat(user_input):
     thread = client.beta.threads.create()
@@ -59,11 +66,21 @@ def submit_chat(user_input):
     st.session_state.messages.append(message_format)
     with st.chat_message("user",avatar='./assets/user_icon.png'):
         st.markdown(user_input)
-
+    
+    
+    
+    results, anonymized_input = anonymize_user_input(user_input)
+    for result in results:
+        if result.entity_type == "PERSON":
+            name = user_input[result.start:result.end]
+            if len(name.split(" ")) == 2:
+                name = name.split(" ")[0]   # only take the first name
+    print(anonymized_input)
+    print(results)
     message = client.beta.threads.messages.create(
             thread_id=thread.id,
             role="user",
-            content=user_input
+            content=anonymized_input
             )
 
     with client.beta.threads.runs.stream(
@@ -76,8 +93,9 @@ def submit_chat(user_input):
         # Print the text from text delta events
             if event.event == "thread.message.delta" and event.data.delta.content:
                 full_response += event.data.delta.content[0].text.value
+                if "<PERSON>" in full_response:
+                    full_response = full_response.replace("<PERSON>", name)
                 assistant_response.write(full_response)
-                # st.chat_message("assistant").write(response_container)
         
         st.session_state.messages.append({"role": "assistant", "content": full_response})
 
