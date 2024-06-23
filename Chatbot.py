@@ -1,8 +1,9 @@
 import streamlit as st
 import openai
 import base64
-from presidio_analyzer import AnalyzerEngine
-from presidio_anonymizer import AnonymizerEngine
+import presidio_analyzer as pres_analyzer
+import presidio_anonymizer as pres_anonymizer
+
 
 openai.api_key = st.secrets['OPENAI_API_KEY']
 st.set_page_config(
@@ -53,8 +54,8 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 def anonymize_user_input(user_input):
-    analyzer = AnalyzerEngine()
-    anonymizer = AnonymizerEngine()
+    analyzer = pres_analyzer.AnalyzerEngine()
+    anonymizer = pres_anonymizer.AnonymizerEngine()
     results = analyzer.analyze(text=user_input, entities=['PERSON', 'CREDIT_CARD', 'IP_ADDRESS', 'EMAIL_ADDRESS', 'PHONE_NUMBER'], language='en')
     anonymized_text = anonymizer.anonymize(text=user_input,analyzer_results=results)
 
@@ -66,8 +67,6 @@ def submit_chat(user_input):
     st.session_state.messages.append(message_format)
     with st.chat_message("user",avatar='./assets/user_icon.png'):
         st.markdown(user_input)
-    
-    
     
     results, anonymized_input = anonymize_user_input(user_input)
     for result in results:
