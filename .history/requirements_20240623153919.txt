@@ -1,5 +1,0 @@
-streamlit>=1.28
-openai>=1.2
-presidio_analyzer
-presidio_anonymizer
-numpy==
