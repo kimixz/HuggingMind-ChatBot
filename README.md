@@ -5,6 +5,10 @@
 
 HuggingMind is an AI-driven mental health chatbot provides university students with 24/7 personalized support and immediate access to professional guidance, utilizing advanced language models and university-specific mental health resources.
 
+<img width="1263" alt="Screenshot 2024-08-13 at 5 14 19 PM" src="https://github.com/user-attachments/assets/fd62194b-ff80-4bd6-b9e5-edc96935acd9">
+
+
+
 ## Demo App
 
 [![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://huggingmind.streamlit.app/)
